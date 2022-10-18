@@ -161,7 +161,7 @@ but it has a lot of features of good spreadsheet data.
 What's currently not obviously clear is whether or not time is recorded in 12-hour or 24-hour time,
 this may be more evident as we fill in more data.
 I realized when I loaded this dataset into R,
-that the `temerature_unit` column of `F` values are read in as `FALSE` values by default.
+that the `temperature_unit` column of `F` values are read in as `FALSE` values by default.
 I could either write the data import code in such a way to accommodate for this default behavior (which I did),
 or choose to rename the `temperature` column as `temp_f` so we have the unit information
 directly in the column name.
