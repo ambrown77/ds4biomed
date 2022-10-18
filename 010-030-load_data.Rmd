@@ -2,6 +2,10 @@
 
 ## Learning Objectives {#load-data-lo}
 
+1. Understand the file system cataloguing in computer
+2. Recognize different types of file formats and operations that can be used 
+
+
 ## Introduction {#load-data-intro}
 
 Loading data into R is the first step!
@@ -506,7 +510,7 @@ tumor.loc[(tumor["Day"] == 0) | (tumor["Day"] == 13)]
 ###### R {-}
 To subset on both columns **and** rows,
 we call the corresponding subseting function one after the other.
-Here we are taking the `tumor` column, then `select`ing the `Group`, `Day` and `Size` columns, then
+Here we are taking the `tumor` dataset, then `select`ing the `Group`, `Day` and `Size` columns, then
 `filter`ing the rows where the `Size` is greater than `2000`.
 
 ```{r}
