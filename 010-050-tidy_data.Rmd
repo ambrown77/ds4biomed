@@ -245,7 +245,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 
 Now that we have "tidied" our dataset, we can now calculate descriptive statistics.
-For example, we can ask how does the is the average tumor volume change for each treatment group across the days?
+For example, we can ask how does the average tumor volume change for each treatment group across the days?
 
 ::::: {.rBlock}
 ###### R {-}
@@ -327,10 +327,10 @@ knitr::include_graphics("./images/tidy/tidy_paper-table_9-tb_messy.PNG")
 
 Combining multiple bits of information in a column is fairly common in medical data sets.
 If we look at just the column names,
-we can see that we have a similar problem from the previous example (Section TODO).
-So we would fix that problem first (Panel A in Figure TODO).
+we can see that we have a similar problem from the previous example.
+So we would fix that problem first (Panel A in Figure 6.4).
 From there we can "split" the gender information from the "age" information to separate from one another and create separate columns
-(Panel B in Figure TODO).
+(Panel B in Figure 6.4).
 
 ```{r, echo=FALSE, fig.cap="Table 10 from the \"Tidy Data\" paper"}
 knitr::include_graphics("./images/tidy/tidy_paper-table_10-tb_tidy_process.PNG")
