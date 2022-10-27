@@ -79,7 +79,7 @@ encounter_description_reason
 
 ## Data Filtering
 
-Some of the questions to consider are, 
+Some of the questions to consider for understanding the 30-day readmittance are, 
 
 1. How is a "heart attack" define in the data?
 2. What columns do we need to answer that question?
