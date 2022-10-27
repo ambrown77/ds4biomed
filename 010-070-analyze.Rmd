@@ -1,9 +1,7 @@
 
 # Analysis Intro
 
-An introduction to analysis.
-
-Learning how to read output.
+Now that we have learnt to visualize the data, we will look at the next step in the process - analysis of data. It is the process of systematically applying statistical/logical techniques to describe and evaluate data. We will explore the concept of Logistical Regression using different models to analyze the data, while also learning to understand the output. 
 
 ## Logistic Regression
 
@@ -33,6 +31,8 @@ Since it is a form of a linear regression, it is known as a **generalized linear
 We can use the `glm` function in R.
 
 ### Model 1
+
+To start the modeling process, we include one explanatory variable - Age. 
 
 ```{r}
 mod1 <- glm(Recurrence ~ Age, data = blood, family = "binomial")
