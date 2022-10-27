@@ -7,7 +7,12 @@ editor_options:
 
 ## Introduction {#descriptives-intro}
 
+Before starting the analysis of data, it is very important to understand it well using a few summarizing values - these are called descriptive calculations. R provides us with a wide range of functions to obtain the summary statistics. Some of them include mean, median, range, min, max, var, etc. We will explore these functions in depth using examples in this chapter.
+
 ## Learning Objectives {#descriptives-lo}
+
+1. Understand the usage of functions that provide summary statistics in R
+2. Implement the group_by() function using a dataset successfully
 
 ## Building the pipeline
 
@@ -39,6 +44,8 @@ tumor_subset
 :::::
 
 ## Summary statistics
+
+Now that we have loaded the data, let us understand the summary statistics using the mean() function for the tumor dataset
 
 ::::: {.rBlock}
 ###### R {-}
@@ -153,6 +160,8 @@ tumor_subset %>%
 
 ## Groupby operations
 
+The group_by() function is used to group the dataframe. An example is shown below using the tumor dataset.
+
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
@@ -238,5 +247,8 @@ tumor_subset %>%
 :::::
 
 ## Summary {#descriptives-summary}
+
+- Summary statistics is key to understanding the center, spread and other important quantities of the data
+- Group_by function is used to group the dataframe
 
 ## Additional Resources {#descriptives-resources}
