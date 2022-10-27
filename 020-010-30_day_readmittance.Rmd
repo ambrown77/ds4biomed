@@ -5,6 +5,10 @@ editor_options:
 ---
 # 30-Day Readmittance
 
+We want to count and find the patients who have
+come to the emergency department for a heart attack
+and came back to the ED for a heart attack within 30 days.
+
 ::::: {.rBlock}
 ###### R {-}
 
@@ -75,9 +79,7 @@ encounter_description_reason
 
 ## Data Filtering
 
-We want to count and find the patients who have
-come to the emergency department for a heart attack
-and came back to the ED for a heart attack within 30 days.
+Some of the questions to consider are, 
 
 1. How is a "heart attack" define in the data?
 2. What columns do we need to answer that question?
