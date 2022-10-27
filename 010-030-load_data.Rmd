@@ -603,7 +603,7 @@ Also as a general rule, keeping files in lower-case will prevent a lot of potent
 
 ## Summary {#load-data-summary}
 
-- read_csv() is a function in Pandas used to read data files in .csv format
+- read_csv() is a function used to read data files in .csv format
 - A dataframe is a tabular dataset object
 - The %>% operator takes the object on the left, and passes that into the first argument to the function on the right
 - The filter function is used to filter rows. It takes a dataframe object as the first argument and boolean condition as other arguments
