@@ -2,6 +2,10 @@
 
 ## Introduction {#vis-intro-intro}
 
+In this chapter, we will learn to visualize different types of data. 
+
+Load up the libraries and data.
+
 ```{r, echo=TRUE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
@@ -75,6 +79,8 @@ knitr::include_graphics("./images/ggplot2/ggplot-grammar_layers.png")
 
 ## Data + geometries
 
+ggplot is an open source data visualization package in R based on Grammar of Graphics. It lets us visualize data in different layers. We will look at an example using the blood storage dataset. 
+
 ```{r}
 # add a data layer
 ggplot(data = blood)
@@ -138,7 +144,11 @@ This means we can add more layers with different data sets if we want to.
 
 ### Univariate
 
+A type of data that consists of observations on one type of characteristic is called univariate data
+
 #### Continuous
+
+Let us visualize the blood storage dataset as an example of univariate continuous data using a histogram
 
 ```{r}
 ggplot(blood, aes(x = Age)) + geom_histogram()
@@ -242,6 +252,8 @@ ggplot(blood) +
 ```
 
 ## Themes
+
+Themes are a powerful way of customizing the non-data components of your plot. Let us look at an example using the blood storage dataset. 
 
 ```{r}
 g <- ggplot(blood) +
