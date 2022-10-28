@@ -6,6 +6,8 @@ editor_options:
 
 # Working with multiple datasets
 
+Let us learn about working with multiple datasets using the heart attack encounters dataset. 
+
 ::::: {.rBlock}
 ###### R {-}
 ```{r, message=FALSE, warning=FALSE}
@@ -39,8 +41,6 @@ patients
 
 ## Joins
 
-https://r4ds.had.co.nz/relational-data.html
-
 - `inner_join()`: includes all rows in x and y.
 
 ```{r, echo=FALSE}
@@ -50,6 +50,8 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/3abea0b730526c3f0
 - `left_join()`: includes all rows in x.
 - `right_join()`: includes all rows in y.
 - `full_join()`: includes all rows in x or y.
+
+For more detailed information about Joins, click here: https://r4ds.had.co.nz/relational-data.html
 
 ```{r, echo=FALSE}
 knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/9c12ca9e12ed26a7c5d2aa08e36d2ac4fb593f1e/79980/diagrams/join-outer.png")
@@ -189,6 +191,10 @@ ggplot(mi_encounters_pt, aes(x = age_years_event)) +
 
 ## Databases
 
+Learning about databases is an important aspect of data science and analytics. 
+
+For more information on databases and the RSQLite interface, click here: https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html
+
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
@@ -196,8 +202,6 @@ library(tidyverse)
 library(RSQLite)
 ```
 :::::
-
-https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html
 
 ::::: {.rBlock}
 ###### R {-}
