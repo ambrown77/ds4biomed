@@ -5,6 +5,8 @@ editor_options:
 ---
 # Functions
 
+Functions are a set of statements organized together to perform a specific task. Let us learn about implementing functions through an example. 
+
 ```{r}
 library(tidyverse)
 
