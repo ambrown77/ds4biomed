@@ -10,7 +10,7 @@
 
 Loading data into R is the first step!
 
-First we need to load up a package to make loading data sets easier.
+First, we need to load a package to make loading data sets easier.
 We will be using the `tidyverse` set of packages for all of our data processing needs in R
 ^[This is not the only way you can process data in R, but from experience, it seems to be the easier way to learn R due to its consistency, community, and learning materials.]
 and the `pandas` library in Python.
@@ -21,20 +21,20 @@ knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/raw
 
 ::::: {.rBlock}
 ###### R {-}
-We first will load up the `tidyverse` packages using the `library` function.
+First, we will load the `tidyverse` packages using the `library` function.
 
 ```{r}
 library(tidyverse)
 ```
 
-The first time you load up the `tidyverse` library,
-there will be some output that lists the packages `tidyverse` loads,
+The first time you load the `tidyverse` library,
+there will be some output that lists the packages `tidyverse` loads
 along with any functions that share the same name as other functions (i.e., conflicts).
 As long as you are mindful about starting a new RStudio session before you work,
 you can ignore this output for now.
 
 Now we can use all the functions within the Tidyverse to do our data processing.
-If you are following along and you run a piece of code and end up with an `could not find function` error,
+If you run a piece of code and end up with an `could not find function` error,
 make sure you typed `library(tidyverse)` correctly and executed the line of code.
 :::::
 
@@ -94,9 +94,9 @@ That is, we can use the backslash, `/` to move into folders.
 We can write `data/medicaldata_tumorgrowth.csv` because we are "starting from" the `ds4biomed` folder.
 This is called a **relative path** because the location of the `csv` file is relative to the `ds4biomed` starting point (aka **working directory**).
 If we want to refer to any arbitrary filer or folder on the computer, we can specify the **full path** of the file.
-The full path will start with a drive letter on windows,
+The full path will start with a drive letter on Windows,
 `C:\Users\Daniel\Desktop\ds4biomed\data\medicaldata_tumorgrowth.csv`,
-and a `/` on a Mac,
+and a forward slash (`/`) on a Mac,
 `/Users/Daniel/Desktop/ds4biomed/data/medicaldata_tumorgrowth.csv`.
 
 Suppose we create an `analysis` folder for our `01-load_data.R` script so that our folder structure looks like this
@@ -119,7 +119,7 @@ Suppose we create an `analysis` folder for our `01-load_data.R` script so that o
 
 Now, if our **working directory** is now in the `analysis` folder,
 we need a way to reference one folder up to the `ds4biomed` folder *and then* back down to the `data` folder.
-The way we can **relatively** reference the previous folder is with 2 dots, `..`, `../data/medicaldata_tumorgrowth.csv`
+The way we can **relatively** reference the previous folder is with two dots, `..`, `../data/medicaldata_tumorgrowth.csv`
 
 
 <button class="accordion" id="question">Exercise 1 Question</button>
@@ -141,7 +141,7 @@ Given the following example folder structure where we have a `chart_review` and 
                   |- patients.csv
 ```
 
-Let's say we are currently in the `chart_review/analysis` folder, working on our `demographics.R` as denoted by the `#`.
+Let us say we are currently in the `chart_review/analysis` folder, working on our `demographics.R` as denoted by the `#`.
 
 1. Write the **relative path** to the `patients.csv` file in the `rct_m22-0305` folder.
 2. Write the **absolute path** to the `patients.csv` file in the `chart_review` folder.
@@ -152,24 +152,24 @@ Let's say we are currently in the `chart_review/analysis` folder, working on our
 
 When you are looking at file paths in the Windows Explorer,
 you will notice that all Windows paths will use the backslash, `\`,
-instead of the forward slash, `/` to refer to files.
-In a lot of programming languages, including R, the `\` is a special character,
-so if you want to use `\` for file paths in Windows, you will have to use 2 backslashes, e.g., `..\\data\\patients.csv\\`.
+instead of the forward slash, `/`, to refer to files.
+In a lot of programming languages, including R, the `\` is a special character.
+So if you want to use `\` for file paths in Windows, you will have to use two backslashes, e.g., `..\\data\\patients.csv\\`.
 However, you can still use the regular `/` in Windows to refer to folders just like other **operating systems**.
 
-## Set your working directory
+## Set Your Working Directory
 
-So far, we have been talking about a "starting point" or "working directory",
+So far, we have been talking about a "starting point" or "working directory"
 when we have been referring to files around our computer.
 In order to quickly and reliably set your working directory,
 
 we use **RStudio Projects** (Section \@ref(rstudio-projects)),
-or Jupyter Lab
+or Jupyter Lab.
 
 
-## Reading text files (CSV)
+## Reading Text Files (CSV)
 
-Now that we know how to find our files, let's load up our first data set.
+Now that we know how to find our files, it is time to load up our first data set.
 When trying to type in a file path,
 you can hit the `<TAB>` key to autocomplete the files.
 This will help you with a lot of potential spelling mistakes.
@@ -191,21 +191,21 @@ pd.read_csv("data/medicaldata_tumorgrowth.csv")
 :::::
 
 
-**Debug help:**
-- If the above code returns a `could not find function "read_csv"`
-  make sure you have loaded up the proper library with `library(tidyverse)`
+**Debug Help:**
+- If the above code returns a `could not find function "read_csv"`,
+  make sure you have loaded up the proper library with `library(tidyverse)`.
 - If the above code returns a `does not exist in current working directory`,
-  make sure the working directory it lists is your expected "starting point" (i.e., working directory),
+  make sure the working directory, which it lists, is your expected "starting point" (i.e., working directory),
   and make sure the file path is spelled correctly.
 
-`read_csv` will show us the columns that were read in,
+`read_csv` will show the columns that were read in
 as well as the **data type** of that column (e.g., character, double -- a number).
 
 Loading a data set is great, but we need a convenient way to refer to the data set.
-We don't want to re-load the data set every time we want to perform an action on it.
+We do not want to re-load the data set every time we want to perform an action on it.
 We can take this loaded data set and **assign** it to a **variable**.
 We can do this with the **assignment** **operator**, `<-`.
-Note the way it is typed, a less than symbol (`<`) followed immediately by the dash (`-`) without any spaces in between.
+Note the way it is typed: a less than symbol (`<`) followed immediately by a dash (`-`) without any spaces in between.
 The right side of the assignment operator, `<-`, will be executed and then **assigned** to the variable on the left.
 
 ::::: {.rBlock}
@@ -224,12 +224,13 @@ tumor = pd.read_csv("data/medicaldata_tumorgrowth.csv")
 ```
 :::::
 
-Notice this time we no longer see the dataset being printed.
-The "Environment" tab in the RStudio panel will now have an entry for the variable you used.
-Clicking on the right data set icon will open a view of your dataset,
-clicking on the arrow will show you the column-by-column text representation (technically it's called the `structure`).
+Notice that this time we no longer see the dataset being printed.
+The "Environment" tab in the RStudio panel (on the top right) will now show the loaded dataset with the variable
+name we used as an entry. 
+Clicking on any listed data set icon in the “Environment” tab will open a view of the dataset in a new window on the left window.
+Clicking on the light blue circled arrow next to each loaded data set in the “Environment” tab will show you the column-by-column text representation (technically called the `structure`) of that data set.
 
-To look at our dataset we can execute *just* the variable we assigned the dataset to.
+To look at our dataset we can execute *just* the variable we assigned the dataset to by either calling the variable in the console window or in an R script.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -247,15 +248,15 @@ tumor
 ```
 :::::
 
-This tabular dataset that has now been loaded into R is called a **data frame** **object** (or simply **dataframe**),
-the `tidyverse` uses a `tibble`.
+This tabular dataset, which has now been loaded into R, is called a **data frame** **object** (or simply a **dataframe.**),
+The `tidyverse` uses a `tibble`object.
 For the most part, a `data.frame` object will behave like a `tibble` object.
 
 ## Reading Excel files
 
 ::::: {.rBlock}
 ###### R {-}
-To read an excel file we will need a separate library that can handle Excel files, `readxl`.
+To read an excel file, we will need a separate library that can handle Excel files, which is `readxl`.
 
 ```{r}
 library(readxl)
@@ -275,7 +276,7 @@ tumor_xl = pd.read_excel("data/medicaldata_tumorgrowth.xlsx")
 ```
 :::::
 
-And we can view the loaded Excel file just like before.
+We can view the loaded Excel file just like before.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -292,7 +293,7 @@ tumor_xl
 :::::
 
 If you are ever lost as to what object you are working with, you can use the `class` function in R
-or the `type` function in Python to tell you.
+or the `type` function in Python to tell you that.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -324,17 +325,16 @@ type(tumor_xl)
 ```
 :::::
 
-Once you have see a `"tbl_df"` or `"data.frame"` (R) or `<class 'pandas.core.frame.DataFrame'>` (Python) you can be sure that the dataframe processing functions
-we'll learn will work.
+Once you have see a `"tbl_df"` or `"data.frame"` (R) or `<class 'pandas.core.frame.DataFrame'>` (Python) you can be sure that the dataframe processing functions, which we will learn, will work.
 
-Take away: Once you load a dataset and end up with either a `data.frame` or `tibble` object you can continue using
-the same data processing methods we cover in these materials.
+**Take away**: Once you load a dataset and end up with either a `data.frame` or `tibble` object, you can continue using
+the same data processing methods that we cover in these materials.
 
 <button class="accordion" id="question">Exercise 2 Question</button>
 :::{.panel-question}
 1. Make sure you have the `ds4biomed` RStudio project open
-2. Load up the `exercise-010-050.csv` file under `data > spreadsheets` (you can use the relative path or full path).
-3. Save this dataframe object to the variable, `spreadsheet_df`
+2. Load up the `exercise-010-050.csv` file under `data > spreadsheets` (You can use the relative path or full path).
+3. Save this dataframe object to the variable `spreadsheet_df`
 :::
 
 <button class="accordion" id="solution">Exercise 2 Solution</button>
@@ -373,7 +373,7 @@ Then, the other arguments are the columns we want to select.
 select(tumor, Size)
 ```
 
-If we want multiple columns (or to re-order columns) we can specify each column we want selected.
+If we want multiple columns (or to re-order columns), we can specify each column which we want to be selected.
 
 ```{r}
 select(tumor, Group, Day, Size)
@@ -397,10 +397,10 @@ tumor[["Size"]]
 
 ::::: {.rBlock}
 ###### R {-}
-### The `%>%` pipe operator
+### The `%>%` Pipe Operator
 
-A common way `tidyverse` code gets written is using the `%>%` operator.
-The `%>%` takes the object on the left, and passes that into the first argument to the function on the right.
+A common way `tidyverse` code gets written is using the pipe operator,`%>%`. 
+The `%>%` takes the object on the left and passes that into the first argument in the function on the right.
 We can re-write the above select statements as follows.
 R interprets the code in the exact same way.
 
@@ -410,30 +410,30 @@ tumor %>%
 ```
 
 The way we pronounce the pipe, `%>%` is "then".
-So the above statement is read "tumor, then, select size".
+So, the above statement is read "tumor, then select the Size column."
 
 ```{r}
 tumor %>%
   select(Group, Day, Size)
 ```
 
-The benefits of the pipe may not be as apparent now,
-but when we start chaining multiple data sets together,
-it'll make the code a little more readable.
+The benefits of the pipe may not be as apparent now.
+However when we start chaining multiple data sets together,
+it will make the code a little more readable.
 :::::
 
-## Filtering rows
+## Filtering Rows
 
 Now that we know how to select columns on our dataframe,
-we can now learn how to filter the rows.
+we can learn how to filter the rows.
 
 ::::: {.rBlock}
 ###### R {-}
 To filter rows, we can use the `filter` function.
-The first argument of `filter` is the dataframe object (the same pattern as the `select` function),
-and the other arguments are statements that return some `TRUE` or `FALSE` value (this is known as a **boolean** condition).
+The first argument of the `filter` is the dataframe object (the same pattern as the `select` function),
+and the other arguments are statements that return some `TRUE` or `FALSE` value (this is known as a **Boolean** condition).
 
-For example if we want to filter the `tumor` dataset such that the `Group` value is `1` we can filter the rows using that condition.
+For example, if we want to filter the `tumor` dataset such that the `Group` value is `1`, we can filter the rows using that condition.
 
 ```{r}
 filter(tumor, Group == 1)
@@ -454,7 +454,7 @@ tumor.loc[tumor["Group"] == 1]
 ```
 :::::
 
-If we want to combine multiple conditions, where `Group` is `1` **and** `Day` is `0`.
+If we want to combine multiple conditions, where, for example, `Group` is `1` **and** `Day` is `0`:
 
 ::::: {.rBlock}
 ###### R {-}
@@ -466,7 +466,7 @@ tumor %>%
 ```
 :::::
 
-We can also use the `&` for the **and** operator.
+Also, we can use the `&` for the **and** operator.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -479,7 +479,7 @@ tumor %>%
 ::::: {.pyBlock}
 ###### Python {-}
 In pandas,
-if you have multiple conditions you must put each condition around a pair of round brackets `( )`.
+if you have multiple conditions, you must put each condition around a pair of round brackets, i.e., `( )`.
 
 ```{python}
 tumor.loc[(tumor["Group"] == 1) & (tumor["Day"] == 0)]
@@ -504,13 +504,13 @@ tumor.loc[(tumor["Day"] == 0) | (tumor["Day"] == 13)]
 ```
 :::::
 
-## Subsetting columns and rows
+## Making Subset of Columns and Rows
 
 ::::: {.rBlock}
 ###### R {-}
-To subset on both columns **and** rows,
-we call the corresponding subseting function one after the other.
-Here we are taking the `tumor` dataset, then `select`ing the `Group`, `Day` and `Size` columns, then
+To make a subset on both columns **and** rows,
+call the corresponding subset function one after the other.
+Here, we are taking the `tumor` dataset, then `select`ing the `Group`, `Day`, and `Size` columns, then
 `filter`ing the rows where the `Size` is greater than `2000`.
 
 ```{r}
@@ -519,8 +519,8 @@ tumor %>%
   filter(Size > 2000)
 ```
 
-This is an example where the pipe, `%>%` makes the code a little easier to **read**.
-We can "un-pipe" our code and  it looks like this:
+This is an example where the pipe operator, i.e.,`%>%`, makes the code a little easier to **read**.
+We can "un-pipe" our code. It looks like this:
 
 ```{r}
 filter(select(tumor, Group, Day, Size), Size > 2000)
@@ -529,23 +529,23 @@ filter(select(tumor, Group, Day, Size), Size > 2000)
 
 ::::: {.pyBlock}
 ###### Python {-}
-the `.loc` notation actually has 2 parts, and looks like `.loc[rows columns]`.
-So in order to specifiy rows and columns, we separate how we want to select columns with a comma.
+The `.loc` notation actually has two parts; it looks like `.loc[rows columns]`.
+So, in order to specify rows and columns, we separate how we want to select columns with a comma.
 
 ```{python}
 tumor.loc[tumor["Size"] > 2000, ["Group", "Day", "Size"]]
 ```
 :::::
 
-## Saving out data
+## Saving Out Data
 
 Saving out your data frame objects is the first step in creating pipelines.
-Even if all you do is read in data, filter it, and write out the subsetted dataset for another use case,
+Even if all you do is read in data, filter it, and make a subset dataset for another use case,
 you have created your first pipeline.
 Now, you have a repeatable way of performing the same action when your input dataset is updated or changed.
 
-Let's say we want to work with a filtered version of our `tumor` dataset,
-we can first write the code to subset the data we want.
+Let us say we want to work with a filtered version of the `tumor` dataset.
+First, we can write the code to make a subset of the data we want.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -571,7 +571,7 @@ filtered
 ```
 :::::
 
-We can then write out the datafrme to a file (in this case a CSV text file),
+Then, we can write out the dataframe to a file (in this case a CSV text file),
 using the same file pathing string format as we loaded a dataset earlier.
 
 ::::: {.rBlock}
@@ -588,10 +588,10 @@ filtered.to_csv("data/tumor_filtered_py.csv")
 ```
 :::::
 
-One thing to be mindful of is most programs and computer languages don't like having spaces in file names.
-In general, you'll end up typing more characters dealing with spaces in file names,
+One thing to be mindful of is that most programs and computer languages do not like having spaces in file names.
+In general, you will end up typing more characters that deal with spaces in file names
 instead of using an underscore, `_`, or dash, `-`.
-Also as a general rule, keeping files in lower-case will prevent a lot of potential spelling mistakes.
+Also, as a general rule, keeping file names in lowercase will prevent a lot of potential spelling mistakes.
 
 <button class="accordion" id="question">Exercise 3 Question</button>
 :::{.panel-question}
