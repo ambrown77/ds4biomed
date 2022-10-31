@@ -3,7 +3,7 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-# Descriptive Calculations
+# Descriptive Statistics
 
 ## Introduction {#descriptives-intro}
 
@@ -14,9 +14,9 @@ Before starting the analysis of data, it is very important to understand it well
 1. Understand the usage of functions that provide summary statistics in R
 2. Implement the group_by() function using a dataset successfully
 
-## Building the pipeline
+## Building the Pipeline
 
-New script, clear your environment, re-load your libraries
+Start your work in a new script, clear your environment, and re-load your libraries.
 
 ::::: {.rBlock}
 ###### R {-}
@@ -43,7 +43,7 @@ tumor_subset
 ```
 :::::
 
-## Summary statistics
+## Summary Statistics
 
 Now that we have loaded the data, let us understand the summary statistics using the mean() function for the tumor dataset
 
@@ -158,7 +158,7 @@ tumor_subset %>%
 ```
 :::::
 
-## Groupby operations
+## Groupby Operations
 
 The group_by() function is used to group the dataframe. An example is shown below using the tumor dataset.
 
