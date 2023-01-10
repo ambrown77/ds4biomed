@@ -6,20 +6,23 @@ Now that we have learnt to visualize the data, we will look at the next step in 
 ## Logistic Regression
 
 ```{r, echo=TRUE, message=FALSE}
-library(medicaldata)
 library(tidyverse)
+library(datasets)
 ```
 
 ```{r}
-blood <- blood_storage
+data(iris)
+summary(iris)
+sub_iris <- subset(iris,Species %in% c('setosa','virginica'))
+sub_iris
 ```
 
 
 Variable of interest: `Recurrence`. It is a binary variable that only has 2 possible values.
 
 ```{r}
-blood %>%
-  group_by(Recurrence) %>%
+sub_iris %>%
+  group_by(Species) %>%
   summarize(count = n())
 ```
 
@@ -35,7 +38,7 @@ We can use the `glm` function in R.
 To start the modeling process, we include one explanatory variable - Age. 
 
 ```{r}
-mod1 <- glm(Recurrence ~ Age, data = blood, family = "binomial")
+mod1 <- glm(Species ~ Sepal.Length, data = sub_iris, family = "binomial")
 ```
 
 ```{r}
@@ -75,7 +78,7 @@ That is, the **odds** of earlier biochemical recurrence of prostate cancer after
 - `PreopPSA`: Preoperative prostate specification antigen (PSA) in ng/mL
 
 ```{r}
-mod2 <- glm(Recurrence ~ Age + PVol + PreopPSA, data = blood, family = "binomial")
+mod2 <- glm(Species ~ Sepal.Length + Sepal.Width + Petal.Length, data = sub_iris, family = "binomial")
 summary(mod2)
 ```
 
@@ -101,7 +104,7 @@ ggplot(blood, aes(x = PreopPSA)) +
   - 3 = Extensive
 
 ```{r}
-mod3 <- glm(Recurrence ~ Age + PVol + PreopPSA + TVol, data = blood, family = "binomial")
+mod3 <- glm(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data = sub_iris, family = "binomial")
 summary(mod3)
 ```
 

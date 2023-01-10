@@ -12,9 +12,9 @@ Let us learn about working with multiple datasets using the heart attack encount
 ###### R {-}
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(janitor)
 
-encounters <- read_csv("data/synthea/encounters.csv") %>%
+
+fertilizer <- read_csv("data/fertilizer.csv") %>%
   clean_names()
 ```
 

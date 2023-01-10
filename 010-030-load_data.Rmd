@@ -48,7 +48,7 @@ import pandas as pd
 
 ## Find your files
 
-Let the below figures represent a `ds4biomed` folder on your Desktop on Windows and Mac, respectively.
+Let the below figures represent a `ds4es` folder on your Desktop on Windows and Mac, respectively.
 
 :::{.row}
 :::{.column}
@@ -57,13 +57,13 @@ C:\
   |- Users\
     |- Daniel\
       |- Desktop\
-        |- ds4biomed\
+        |- ds4es\
          |- data\
          |    |- medicaldata_tumorgrowth.csv
          |- output\
          |- 01-load_data.R
          |- README.md
-         |- ds4biomed.Rproj
+         |- ds4es.Rproj
 ```
 :::
 
@@ -73,13 +73,13 @@ C:\
   |- Users/
     |- Daniel/
       |- Desktop/
-        |- ds4biomed/
+        |- ds4es/
           |- data/
           |    |- medicaldata_tumorgrowth.csv
           |- output/
           |- 01-load_data.R
           |- README.md
-          |- ds4biomed.Rproj
+          |- ds4es.Rproj
 ```
 :::
 :::
@@ -107,14 +107,14 @@ Suppose we create an `analysis` folder for our `01-load_data.R` script so that o
   |- Users/
     |- Daniel/
       |- Desktop/
-        |- ds4biomed/
+        |- ds4es/
           |- data/
           |    |- medicaldata_tumorgrowth.csv
           |- output/
           |- analysis
           |    |- 01-load_data.R
           |- README.md
-          |- ds4biomed.Rproj
+          |- ds4es.Rproj
 ```
 
 Now, if our **working directory** is now in the `analysis` folder,
@@ -178,7 +178,7 @@ This will help you with a lot of potential spelling mistakes.
 ###### R {-}
 
 ```{r}
-read_csv("data/medicaldata_tumorgrowth.csv")
+read_csv("data/crop_recommendation.csv")
 ```
 :::::
 
@@ -186,7 +186,7 @@ read_csv("data/medicaldata_tumorgrowth.csv")
 ###### Python {-}
 
 ```{python}
-pd.read_csv("data/medicaldata_tumorgrowth.csv")
+pd.read_csv("data/crop_recommendation.csv")
 ```
 :::::
 
@@ -212,7 +212,7 @@ The right side of the assignment operator, `<-`, will be executed and then **ass
 ###### R {-}
 
 ```{r}
-tumor <- read_csv("data/medicaldata_tumorgrowth.csv")
+crop <- read_csv("data/crop_recommendation.csv")
 ```
 :::::
 
@@ -220,7 +220,7 @@ tumor <- read_csv("data/medicaldata_tumorgrowth.csv")
 ###### Python {-}
 
 ```{python}
-tumor = pd.read_csv("data/medicaldata_tumorgrowth.csv")
+crop = pd.read_csv("data/crop_recommendation.csv")
 ```
 :::::
 
@@ -236,7 +236,7 @@ To look at our dataset we can execute *just* the variable we assigned the datase
 ###### R {-}
 
 ```{r}
-tumor
+crop
 ```
 :::::
 
@@ -244,7 +244,7 @@ tumor
 ###### Python {-}
 
 ```{python}
-tumor
+crop
 ```
 :::::
 
@@ -265,14 +265,14 @@ library(readxl)
 The `readxl` library gives us access to the `read_excel` function which we can use to read in an Excel file.
 
 ```{r}
-tumor_xl <- read_excel("data/medicaldata_tumorgrowth.xlsx")
+crop_xl <- read_excel("data/crop_recommendation.xlsx")
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor_xl = pd.read_excel("data/medicaldata_tumorgrowth.xlsx")
+crop_xl = pd.read_excel("data/crop_recommendation.xlsx")
 ```
 :::::
 
@@ -281,14 +281,14 @@ We can view the loaded Excel file just like before.
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-tumor_xl
+crop_xl
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor_xl
+crop_xl
 ```
 :::::
 
@@ -298,18 +298,18 @@ or the `type` function in Python to tell you that.
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-class(tumor)
+class(crop)
 ```
 
 ```{r}
-class(tumor_xl)
+class(crop_xl)
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python, eval=FALSE}
-type(tumor)
+type(crop)
 ```
 
 ```
@@ -317,7 +317,7 @@ type(tumor)
 ```
 
 ```{python, eval=FALSE}
-type(tumor_xl)
+type(crop_xl)
 ```
 
 ```
@@ -332,7 +332,7 @@ the same data processing methods that we cover in these materials.
 
 <button class="accordion" id="question">Exercise 2 Question</button>
 :::{.panel-question}
-1. Make sure you have the `ds4biomed` RStudio project open
+1. Make sure you have the `ds4es` RStudio project open
 2. Load up the `exercise-010-050.csv` file under `data > spreadsheets` (You can use the relative path or full path).
 3. Save this dataframe object to the variable `spreadsheet_df`
 :::
@@ -351,14 +351,14 @@ Here is the tumor dataset we are working with.
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-tumor
+crop
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor
+crop
 ```
 :::::
 
@@ -370,28 +370,28 @@ Then, the other arguments are the columns we want to select.
 
 
 ```{r}
-select(tumor, Size)
+select(crop, temperature)
 ```
 
 If we want multiple columns (or to re-order columns), we can specify each column which we want to be selected.
 
 ```{r}
-select(tumor, Group, Day, Size)
+select(crop, label, temperature, humidity)
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor["Size"]
+crop["temperature"]
 ```
 
 ```{python}
-tumor[["Group", "Day", "Size"]]
+crop[["label", "temperature", "humidity"]]
 ```
 
 ```{python}
-tumor[["Size"]]
+crop[["temperature"]]
 ```
 :::::
 
@@ -405,16 +405,16 @@ We can re-write the above select statements as follows.
 R interprets the code in the exact same way.
 
 ```{r}
-tumor %>%
-  select(Size)
+crop %>%
+  select(temperature)
 ```
 
 The way we pronounce the pipe, `%>%` is "then".
-So, the above statement is read "tumor, then select the Size column."
+So, the above statement is read "crop, then select the temperature column."
 
 ```{r}
-tumor %>%
-  select(Group, Day, Size)
+crop %>%
+  select(label, temperature, humidity)
 ```
 
 The benefits of the pipe may not be as apparent now.
@@ -433,36 +433,36 @@ To filter rows, we can use the `filter` function.
 The first argument of the `filter` is the dataframe object (the same pattern as the `select` function),
 and the other arguments are statements that return some `TRUE` or `FALSE` value (this is known as a **Boolean** condition).
 
-For example, if we want to filter the `tumor` dataset such that the `Group` value is `1`, we can filter the rows using that condition.
+For example, if we want to filter the `crop` dataset such that the `label` value is `rice``, we can filter the rows using that condition.
 
 ```{r}
-filter(tumor, Group == 1)
+filter(crop, label == 'rice')
 ```
 
 We can write the "pipe" version as such:
 
 ```{r}
-tumor %>%
-  filter(Group == 1)
+crop %>%
+  filter(label == 'rice')
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor.loc[tumor["Group"] == 1]
+crop.loc[crop["label"] == 'rice']
 ```
 :::::
 
-If we want to combine multiple conditions, where, for example, `Group` is `1` **and** `Day` is `0`:
+If we want to combine multiple conditions, where, for example, `label` is `rice`` **and** `N` is `88`:
 
 ::::: {.rBlock}
 ###### R {-}
 we can put each statement as a separate parameter into the `filter` function.
 
 ```{r}
-tumor %>%
-  filter(Group == 1, Day == 0)
+crop %>%
+  filter(label == 'rice', N == 88)
 ```
 :::::
 
@@ -471,8 +471,8 @@ Also, we can use the `&` for the **and** operator.
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-tumor %>%
-  filter(Group == 1 & Day == 0)
+crop %>%
+  filter(label == 'rice' & N == 88)
 ```
 :::::
 
@@ -482,7 +482,7 @@ In pandas,
 if you have multiple conditions, you must put each condition around a pair of round brackets, i.e., `( )`.
 
 ```{python}
-tumor.loc[(tumor["Group"] == 1) & (tumor["Day"] == 0)]
+crop.loc[(crop["label"] == 'rice') & (crop["N"] == 88)]
 ```
 :::::
 
@@ -492,15 +492,15 @@ Or use the `|` for the **or** operator.
 ###### R {-}
 
 ```{r}
-tumor %>%
-  filter(Day == 0 | Day == 13)
+crop %>%
+  filter(N == 88 | N == 69)
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-tumor.loc[(tumor["Day"] == 0) | (tumor["Day"] == 13)]
+crop.loc[(crop["N"] == 88) | (crop["N"] == 69)]
 ```
 :::::
 
@@ -510,20 +510,20 @@ tumor.loc[(tumor["Day"] == 0) | (tumor["Day"] == 13)]
 ###### R {-}
 To make a subset on both columns **and** rows,
 call the corresponding subset function one after the other.
-Here, we are taking the `tumor` dataset, then `select`ing the `Group`, `Day`, and `Size` columns, then
-`filter`ing the rows where the `Size` is greater than `2000`.
+Here, we are taking the `crop` dataset, then `select`ing the `label`, `N`, and `temperature` columns, then
+`filter`ing the rows where the `temperature` is greater than `23.0`.
 
 ```{r}
-tumor %>%
-  select(Group, Day, Size) %>%
-  filter(Size > 2000)
+crop %>%
+  select(label, N, temperature) %>%
+  filter(temperature > 23.0)
 ```
 
 This is an example where the pipe operator, i.e.,`%>%`, makes the code a little easier to **read**.
 We can "un-pipe" our code. It looks like this:
 
 ```{r}
-filter(select(tumor, Group, Day, Size), Size > 2000)
+filter(select(crop, label, N, temeperature), temperature > 23.0)
 ```
 :::::
 
@@ -533,7 +533,7 @@ The `.loc` notation actually has two parts; it looks like `.loc[rows columns]`.
 So, in order to specify rows and columns, we separate how we want to select columns with a comma.
 
 ```{python}
-tumor.loc[tumor["Size"] > 2000, ["Group", "Day", "Size"]]
+crop.loc[crop["temperature"] > 23.0, ["label", "N", "temperature"]]
 ```
 :::::
 
@@ -544,15 +544,15 @@ Even if all you do is read in data, filter it, and make a subset dataset for ano
 you have created your first pipeline.
 Now, you have a repeatable way of performing the same action when your input dataset is updated or changed.
 
-Let us say we want to work with a filtered version of the `tumor` dataset.
+Let us say we want to work with a filtered version of the `crop` dataset.
 First, we can write the code to make a subset of the data we want.
 
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-filtered <- tumor %>%
-  select(Group, ID, Day, Size) %>%
-  filter(Day == 0 | Day == 13)
+filtered <- crop %>%
+  select(label, P, N, temperature) %>%
+  filter(N == 88 | N == 69)
 ```
 
 ```{r}
@@ -563,7 +563,7 @@ filtered
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-filtered = tumor.loc[(tumor["Day"] == 0) | (tumor["Day"] == 13), ["Group", "ID", "Day", "Size"]]
+filtered = crop.loc[(crop["N"] == 88) | (crop["N"] == 69), ["label", "P", "N", "temperature"]]
 ```
 
 ```{python}
@@ -577,14 +577,14 @@ using the same file pathing string format as we loaded a dataset earlier.
 ::::: {.rBlock}
 ###### R {-}
 ```{r}
-write_csv(filtered, "data/tumor_filtered.csv")
+write_csv(filtered, "data/crop_filtered.csv")
 ```
 :::::
 
 ::::: {.pyBlock}
 ###### Python {-}
 ```{python}
-filtered.to_csv("data/tumor_filtered_py.csv")
+filtered.to_csv("data/crop_filtered_py.csv")
 ```
 :::::
 

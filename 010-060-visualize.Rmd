@@ -9,7 +9,6 @@ Load up the libraries and data.
 ```{r, echo=TRUE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
-library(medicaldata)
 ```
 
 [Blood storage dataset description](https://github.com/higgi13425/medicaldata/blob/master/description_docs/blood_storage_desc.pdf)
@@ -21,18 +20,18 @@ library(medicaldata)
 > Specifically, tested was the hypothesis that perioperative transfusion of allogeneic RBCs stored for a prolonged period is associated with earlier biochemical recurrence of prostate cancer after prostatectomy.
 
 ```{r}
-blood <- medicaldata::blood_storage
-head(blood) # use head to look at the first 6 rows
+crop <- read_csv("data/crop_recommendation.csv")
+head(crop) # use head to look at the first 6 rows
 ```
 
 ```{r}
-class(blood)
+class(crop)
 ```
 
 
 ```{r}
 # get just the column names for a dataset
-names(blood)
+names(crop)
 ```
 
 
@@ -65,8 +64,8 @@ A `factor` is the R's way of naming a **categorical** variable.
 This is different from a **character string**, e.g., a person's name.
 
 ```{r}
-recurrence_freq <- blood %>%
-  group_by(Recurrence) %>%
+recurrence_freq <- crop %>%
+  group_by(type) %>%
   summarize(count = n())
 recurrence_freq
 ```
@@ -83,19 +82,19 @@ ggplot is an open source data visualization package in R based on Grammar of Gra
 
 ```{r}
 # add a data layer
-ggplot(data = blood)
+ggplot(data = crop)
 ```
 
 ```{r}
 # add a data later with an asthetic mapping
-ggplot(data = blood, mapping = aes(x = Recurrence))
+ggplot(data = crop, mapping = aes(x = type))
 ```
 
 
 ```{r}
 # add a geometry layer
 # by default the stat layer for geom_bar will count values
-ggplot(data = blood, mapping = aes(x = Recurrence)) + geom_bar()
+ggplot(data = crop, mapping = aes(x = type)) + geom_bar()
 ```
 
 If we have a pre-calculated set of values, we can to tell `geom_bar` to use the `"identity"` statistic.
@@ -105,7 +104,7 @@ recurrence_freq
 ```
 
 ```{r}
-ggplot(data = recurrence_freq, mapping = aes(x = Recurrence, y = count)) +
+ggplot(data = recurrence_freq, mapping = aes(x = type, y = count)) +
   geom_bar(stat = "identity")
 ```
 
@@ -121,20 +120,20 @@ ggplot will try to use data from the previous layer.
 
 ```{r}
 # everything in the base layer
-ggplot(data = recurrence_freq, mapping = aes(x = Recurrence, y = count)) +
+ggplot(data = recurrence_freq, mapping = aes(x = type, y = count)) +
   geom_bar(stat = "identity")
 ```
 
 ```{r}
 # move astetic mapping to geom layer
 ggplot(data = recurrence_freq) +
-  geom_bar(mapping = aes(x = Recurrence, y = count), stat = "identity")
+  geom_bar(mapping = aes(x = type, y = count), stat = "identity")
 ```
 
 ```{r}
 # move data to geom layer
 ggplot() +
-  geom_bar(data = recurrence_freq, mapping = aes(x = Recurrence, y = count), stat = "identity")
+  geom_bar(data = recurrence_freq, mapping = aes(x = label, y = count), stat = "identity")
 ```
 
 This means we can add more layers with different data sets if we want to.
@@ -150,11 +149,11 @@ A type of data that consists of observations on one type of characteristic is ca
 Let us visualize the blood storage dataset as an example of univariate continuous data using a histogram
 
 ```{r}
-ggplot(blood, aes(x = Age)) + geom_histogram()
+ggplot(crop, aes(x = temperature)) + geom_histogram()
 ```
 
 ```{r}
-ggplot(blood, aes(x = Age)) + geom_histogram(bins = 10)
+ggplot(crop, aes(x = temeperature)) + geom_histogram(bins = 10)
 ```
 
 ### Bivariate
@@ -170,12 +169,12 @@ To convert the numeric column (or any column) into a categorical **factor**, we 
 
 ```{r}
 # Does not show TVol properly
-ggplot(blood) + geom_boxplot(aes(x = TVol, y = Age))
+ggplot(crop) + geom_boxplot(aes(x = type, y = temperature))
 ```
 
 ```{r}
 # please a box plot for each value of TVol as a factor
-ggplot(blood) + geom_boxplot(aes(x = as.factor(TVol), y = Age))
+ggplot(crop) + geom_boxplot(aes(x = as.factor(type), y = temperature))
 ```
 
 Also, we can use a violin plot to better visualize the distribution of the dataset,
@@ -184,22 +183,22 @@ instead of using a box plot.
 In addition, we can overlay a different geometry on top.
 
 ```{r}
-ggplot(blood) + 
-  geom_violin(aes(x = as.factor(TVol), y = Age)) +
-  geom_point(aes(x = as.factor(TVol), y = Age))
+ggplot(crop) + 
+  geom_violin(aes(x = as.factor(type), y = temperature)) +
+  geom_point(aes(x = as.factor(type), y = temperature))
 ```
 
 ```{r}
-ggplot(blood) +
-  geom_violin(aes(x = as.factor(TVol), y = Age)) +
-  geom_jitter(aes(x = as.factor(TVol), y = Age))
+ggplot(crop) +
+  geom_violin(aes(x = as.factor(type), y = temperature)) +
+  geom_jitter(aes(x = as.factor(type), y = temperature))
 ```
 
 We can move around our data layers to save some typing by having
 the geometry layer use the same data and mapping layer.
 
 ```{r}
-ggplot(blood, aes(x = as.factor(TVol), y = Age)) +
+ggplot(crop, aes(x = as.factor(type), y = temperature)) +
   geom_violin() +
   geom_jitter()
 ```
@@ -217,15 +216,15 @@ We can set other asthetic mappings, e.g., color
   - 4 = Score 8-10
 
 ```{r}
-ggplot(blood) +
-  geom_point(aes(x = PVol, y = PreopPSA, color = sGS))
+ggplot(crop) +
+  geom_point(aes(x = rainfall, y = temperature, color = type))
 ```
 
 Again, we have a numeric variable that is really an ordinal categorical variable
 
 ```{r}
-ggplot(blood) +
-  geom_point(aes(x = PVol, y = PreopPSA, color = as.factor(sGS)))
+ggplot(crop) +
+  geom_point(aes(x = rainfall, y = temperature, color = as.factor(type)))
 ```
 
 
@@ -237,16 +236,16 @@ Think of this as the `group_by` version for plotting.
 
 ```{r}
 # use facet wrap for a single variable
-ggplot(blood) +
-  geom_point(aes(x = PVol, y = PreopPSA, color = as.factor(sGS))) +
-  facet_wrap(~ RBC.Age.Group)
+ggplot(crop) +
+  geom_point(aes(x = rainfall, y = temperature, color = as.factor(label))) +
+  facet_wrap(~ type)
 ```
 
 ```{r}
 # use facet grid for 2 variables
-ggplot(blood) +
-  geom_point(aes(x = PVol, y = PreopPSA, color = as.factor(FamHx))) +
-  facet_grid(RBC.Age.Group ~ Recurrence)
+ggplot(crop) +
+  geom_point(aes(x = rainfall, y = temperature, color = as.factor(label))) +
+  facet_grid(label ~ type)
 ```
 
 ## Themes
@@ -254,9 +253,9 @@ ggplot(blood) +
 Themes are a powerful way of customizing the non-data components of your plot. Let us look at an example using the blood storage dataset. 
 
 ```{r}
-g <- ggplot(blood) +
-  geom_point(aes(x = PVol, y = PreopPSA, color = as.factor(FamHx))) +
-  facet_grid(RBC.Age.Group ~ Recurrence)
+g <- ggplot(crop) +
+  geom_point(aes(x = rainfall, y = temperature, color = as.factor(label)))) +
+  facet_grid(label ~ type)
 g
 ```
 
